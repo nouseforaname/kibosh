@@ -4,42 +4,42 @@ GO_PACKAGES = $$(go list ./... ./cmd/loader | grep -v vendor)
 GO_FILES = $$(find . -name "*.go" | grep -v vendor | uniq)
 
 build-kibosh-linux:
-	CGO_ENABLED=no GOOS=linux GOARCH=amd64 go build -o kibosh.linux ./cmd/kibosh/main.go
+	GOOS=linux GOARCH=amd64 go build --ldflags '-extldflags "-static"' --ldflags '-extldflags "-static"' -o kibosh.linux ./cmd/kibosh/main.go
 
 build-kibosh-mac:
-	CGO_ENABLED=no GOOS=darwin GOARCH=amd64 go build -o kibosh.darwin ./cmd/kibosh/main.go
+	GOOS=darwin GOARCH=amd64 go build -o kibosh.darwin ./cmd/kibosh/main.go
 
 build-kibosh: build-kibosh-linux build-kibosh-mac
 
 build-loader-linux:
-	CGO_ENABLED=no GOOS=linux GOARCH=amd64 go build -o loader.linux ./cmd/loader/main.go
+	GOOS=linux GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o loader.linux ./cmd/loader/main.go
 
 build-loader-mac:
-	CGO_ENABLED=no GOOS=darwin GOARCH=amd64 go build -o loader.mac ./cmd/loader/main.go
+	GOOS=darwin GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o loader.mac ./cmd/loader/main.go
 
 build-loader: build-loader-linux build-loader-mac
 
 build-bazaar-mac:
-	CGO_ENABLED=no GOOS=darwin GOARCH=amd64 go build -o bazaar.mac ./cmd/bazaarapi/main.go
+	GOOS=darwin GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o bazaar.mac ./cmd/bazaarapi/main.go
 
 build-bazaar-linux:
-	CGO_ENABLED=no GOOS=linux GOARCH=amd64 go build -o bazaar.linux ./cmd/bazaarapi/main.go
+	GOOS=linux GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o bazaar.linux ./cmd/bazaarapi/main.go
 
 build-bazaar: build-bazaar-linux build-bazaar-mac
 
 build-bazaar-cli-mac:
-	CGO_ENABLED=no GOOS=darwin GOARCH=amd64 go build -o bazaarcli.mac ./cmd/bazaarcli/main.go
+	GOOS=darwin GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o bazaarcli.mac ./cmd/bazaarcli/main.go
 
 build-bazaar-cli-linux:
-	CGO_ENABLED=no GOOS=linux GOARCH=amd64 go build -o bazaarcli.linux ./cmd/bazaarcli/main.go
+	GOOS=linux GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o bazaarcli.linux ./cmd/bazaarcli/main.go
 
 build-bazaar-cli: build-bazaar-cli-mac build-bazaar-cli-linux
 
 build-template-tester-mac:
-	CGO_ENABLED=no GOOS=darwin GOARCH=amd64 go build -o template-tester.mac ./cmd/templatetester/main.go
+	GOOS=darwin GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o template-tester.mac ./cmd/templatetester/main.go
 
 build-template-tester-linux:
-	CGO_ENABLED=no GOOS=linux GOARCH=amd64 go build -o template-tester.linux ./cmd/templatetester/main.go
+	GOOS=linux GOARCH=amd64 go build --ldflags '-extldflags "-static"' -o template-tester.linux ./cmd/templatetester/main.go
 
 build-template-tester: build-template-tester-mac build-template-tester-linux
 
